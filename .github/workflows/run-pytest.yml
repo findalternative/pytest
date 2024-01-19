@@ -19,6 +19,7 @@ jobs:
         python-version: 3.9
         cache: 'pip'
     - run: |
+        cd baserepo
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pytest
