@@ -1,0 +1,21 @@
+- pipeline: "run pytest"
+  events:
+  - type: "PUSH"
+    refs:
+    - ":default"
+  fail_on_prepare_env_warning: true
+  actions:
+  - action: "Execute run pytest"
+    type: "BUILD"
+    docker_image_name: "library/python"
+    docker_image_tag: "3.9"
+    execute_commands:
+    - "cd baserepo"
+    - "python -m pip install --upgrade pip"
+    - "pip install -r requirements.txt"
+    - "pip install pytest"
+    - "cd pilot"
+    - "pytest -m \"not slow and not uses_tokens and not ux_test\""
+    cached_dirs:
+    - "/root/.cache/pip"
+    shell: "BASH"
