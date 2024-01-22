@@ -3,7 +3,5 @@ steps:
       cd baserepo
       pipenv install -r requirements.txt
       pipenv install pytest
-      pipenv shell
       cd pilot
-      pipenv pytest -m "not slow and not uses_tokens and not ux_test"
-      exit
+      pipenv run pytest -m "not slow and not uses_tokens and not ux_test"
