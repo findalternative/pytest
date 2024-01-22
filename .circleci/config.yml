@@ -23,7 +23,7 @@ jobs:
           pypi-cache: false
       - run:
           command: |
-            cd baserepo/pilot && run pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
+            cd baserepo/pilot && pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
           name: Test
 workflows:
   run-pytest-workflow:
