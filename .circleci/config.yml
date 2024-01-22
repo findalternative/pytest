@@ -11,8 +11,9 @@ jobs:
       - run: cd baserepo
       - python/install-packages:
           pkg-manager: pip
+          app-dir: baserepo
       - python/install-packages:
-          app-dir: baserepo/
+          app-dir: baserepo
           pip-dependency-file: requirements.txt
           pkg-manager: pip
       - python/install-packages:
