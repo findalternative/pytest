@@ -10,19 +10,19 @@ jobs:
       - run: git submodule update --init --recursive
       - python/install-packages:
           app-dir: baserepo
-          pkg-manager: pip
+          pkg-manager: pipenv
       - python/install-packages:
           app-dir: baserepo
           pip-dependency-file: requirements.txt
-          pkg-manager: pip
+          pkg-manager: pipenv
       - python/install-packages:
           app-dir: baserepo
           args: pytest
-          pkg-manager: pip
+          pkg-manager: pipenv
           pypi-cache: false
       - run:
           command: |
-            cd baserepo/pilot && pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
+            cd baserepo/pilot && pipenv run pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
           name: Test
 workflows:
   run-pytest-workflow:
