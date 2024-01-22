@@ -1,6 +1,6 @@
 version: '2.1'
 orbs:
-  python: circleci/python@1.1.0
+  python: cimg/python:3.12.1
 jobs:
   run-pytest:
     executor: python/default
@@ -10,19 +10,19 @@ jobs:
       - run: git submodule update --init --recursive
       - python/install-packages:
           app-dir: baserepo
-          pkg-manager: pipenv
+          pkg-manager: pip
       - python/install-packages:
           app-dir: baserepo
           pip-dependency-file: requirements.txt
-          pkg-manager: pipenv
+          pkg-manager: pip
       - python/install-packages:
           app-dir: baserepo
           args: pytest
-          pkg-manager: pipenv
+          pkg-manager: pip
           pypi-cache: false
       - run:
           command: |
-            cd baserepo/pilot && pipenv run pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
+            cd baserepo/pilot && run pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
           name: Test
 workflows:
   run-pytest-workflow:
