@@ -11,9 +11,6 @@ jobs:
       - run: git submodule update --init --recursive
       - python/install-packages:
           app-dir: baserepo
-          pkg-manager: pip
-      - python/install-packages:
-          app-dir: baserepo
           pip-dependency-file: requirements.txt
           pkg-manager: pip
       - python/install-packages:
