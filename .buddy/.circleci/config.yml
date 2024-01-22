@@ -1,0 +1,28 @@
+version: '2.1'
+orbs:
+  python: circleci/python@1.1.0
+jobs:
+  run-pytest:
+    executor: python/default
+    steps:
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init --recursive
+      - run: cd baserepo
+      - python/install-packages:
+          pkg-manager: pip
+      - python/install-packages:
+          pip-dependency-file: requirements.txt
+          pkg-manager: pip
+      - python/install-packages:
+          args: pytest
+          pkg-manager: pip
+          pypi-cache: false
+      - run:
+          command: |
+            cd pilot && pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
+          name: Test
+workflows:
+  run-pytest-workflow:
+    jobs:
+      - run-pytest
