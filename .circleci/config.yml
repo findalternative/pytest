@@ -1,9 +1,8 @@
 version: '2.1'
-orbs:
-  python: cimg/python:3.12.1
 jobs:
   run-pytest:
-    executor: python/default
+    docker:
+      image: cimg/python:3.12.1
     steps:
       - checkout
       - run: git submodule sync
