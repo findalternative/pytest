@@ -8,21 +8,20 @@ jobs:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init --recursive
-      - run: cd baserepo
       - python/install-packages:
-          pkg-manager: pip
           app-dir: baserepo
+          pkg-manager: pip
       - python/install-packages:
           app-dir: baserepo
           pip-dependency-file: requirements.txt
           pkg-manager: pip
       - python/install-packages:
+          app-dir: baserepo
           args: pytest
           pkg-manager: pip
           pypi-cache: false
       - run:
-          command: |
-            cd pilot && pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
+          command: "cd baserepo/pilot && pytest -m \"not slow and not uses_tokens and not ux_test\" -k \"not get_git_commit and not get_version\""
           name: Test
 workflows:
   run-pytest-workflow:
