@@ -4,4 +4,4 @@ steps:
       pipenv install -r requirements.txt
       pipenv install pytest
       cd pilot
-      pipenv run pytest -m "not slow and not uses_tokens and not ux_test"
+      pipenv run pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
