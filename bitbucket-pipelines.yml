@@ -4,6 +4,8 @@ pipelines:
     - step:
         name: run pytest
         script: 
+          - git submodule sync
+          - git submodule update --init --recursive
           - cd baserepo
           - pip install -r requirements.txt
           - pip install pytest
