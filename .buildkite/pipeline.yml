@@ -1,7 +1,6 @@
 steps:
   - command: |
       cd baserepo
-      e
       pipenv install -r requirements.txt
       pipenv install pytest
       cd pilot
