@@ -11,16 +11,12 @@ jobs:
       - run: git submodule update --init --recursive
       - python/install-packages:
           app-dir: baserepo
-          pip-dependency-file: requirements.txt
-          pkg-manager: pip
-      - python/install-packages:
-          app-dir: baserepo
-          args: pytest
-          pkg-manager: pip
+          pkg-manager: poetry
+          args: --with=dev
           pypi-cache: false
       - run:
           command: |
-            cd baserepo/pilot && pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
+            cd baserepo && poetry run pytest -k "not test_run and not test_start_example_project and not test_get_git_version"
           name: Test
 workflows:
   run-pytest-workflow:
