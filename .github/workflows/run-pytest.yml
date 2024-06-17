@@ -24,4 +24,4 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
         cd pilot
-        pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
+        pytest -k "not get_git_commit and not get_version"
