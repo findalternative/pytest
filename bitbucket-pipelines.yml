@@ -7,7 +7,6 @@ pipelines:
           - git submodule sync
           - git submodule update --init --recursive
           - cd baserepo
-          - pip install -r requirements.txt
-          - pip install pytest
-          - cd pilot
-          - pytest -m "not slow and not uses_tokens and not ux_test" -k "not get_git_commit and not get_version"
+          - python -m pip install poetry
+          - poetry install --with=dev
+          - poetry run pytest -k "not test_run and not test_start_example_project and not test_get_git_version"
