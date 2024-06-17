@@ -12,10 +12,10 @@
     docker_image_name: "library/python"
     docker_image_tag: "3.9"
     execute_commands:
-        - "cd baserepo"
-        - "python -m pip install poetry"
-        - "poetry install --with=dev"
-        - "poetry run pytest -k \"not test_run and not test_start_example_project and not test_get_git_version\""
+      - "cd baserepo"
+      - "python -m pip install poetry"
+      - "poetry install --with=dev"
+      - "poetry run pytest -k \"not test_run and not test_start_example_project and not test_get_git_version\""
     cached_dirs:
     - "/root/.cache/pip"
     shell: "BASH"
