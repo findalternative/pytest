@@ -9,7 +9,7 @@ permissions:
 jobs:
   test:
     name: run pytest
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
       with:
@@ -20,7 +20,6 @@ jobs:
         cache: 'pip'
     - run: |
         cd baserepo
-        python --version
         python -m pip install poetry
         poetry install --with=dev
         poetry run pytest
